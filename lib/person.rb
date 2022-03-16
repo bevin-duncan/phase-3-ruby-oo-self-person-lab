@@ -42,37 +42,46 @@ class Person
     end 
 
     def get_paid(amount) 
-        self.bank_account += amount 
+        @bank_account=self.bank_account += amount 
         "all about the benjamins"
     end 
 
     def take_bath
-        self.hygiene += 4
+        @hygiene=self.hygiene += 4
         "♪ Rub-a-dub just relaxing in the tub ♫"
-    end 
+      end
+    
+      def work_out
+        @hygiene=self.hygiene -=3
+        @happiness=self.happiness += 2
 
-    def work_out
-        self.happiness += 2
-        self.hygiene -= 3
-    "♪ another one bites the dust ♫"
-    end 
+        return '♪ another one bites the dust ♫'
+    end
 
-    def call_friend(friend)
-        self.happiness += 3
-        friend.happiness += 3
-        "Hi #{friend.name}! It's #{self.name}. How are you?"
-    end 
+    def call_friend person
+        @happiness=self.happiness += 3
+        person.happiness += 3
+         "Hi #{person.name}! It's #{self.name}. How are you?"
+    end
+end
 
-    def start_conversation(friend, topic)
-        case topic 
-        when "politics"
-            [self, friend].each { |person| person.happiness -=2 }
-            "blah blah partisan blah lobbyist"
-        when "weather"
-            [self, friend].each { |person| person.happiness += 1 }
-            "blah blah sun blah rain"
-        else 
-            "blah blah blah blah blah"
-        end 
-    end    
+    def start_conversation person, topic
+        case topic
+        when 'politics'
+            
+            @happiness=self.happiness -=2
+            person.happiness -=2
+            return 'blah blah partisan blah lobbyist'
+        when 'weather'
+            
+            @happiness=self.happiness +=1
+            person.happiness += 1
+            return 'blah blah sun blah rain'
+        else
+            return 'blah blah blah blah blah'
+        end
+    
+
+    end
+
 end
